@@ -420,5 +420,20 @@
 
     <!-- Add JavaScript file -->
     <script src="./toggle.js"></script>
+<script>
+fetch('http://localhost:3000/api/products')
+  .then(res => res.json())
+  .then(products => {
+    products.forEach(product => {
+      const priceElement = document.getElementById(product.elementId);
+      if (priceElement) {
+        priceElement.textContent = `$${product.price.toLocaleString()}`;
+      }
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching products:', error);
+  });
+</script>
 </body>
 </html>
